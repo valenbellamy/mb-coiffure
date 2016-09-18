@@ -1,0 +1,39 @@
+/*@font-face {
+   font-family: 'Petit Formal Script', cursive;
+   src: local(Formal), url(./fonts/PetitFormalScript-Regular.ttf);
+}*/
+
+@font-face {
+	font-family: 'Sofia Pro Regular';
+	src: local(SofiaProRegular), url(./fonts/SofiaProRegular.otf);
+}
+
+@font-face {
+	font-family: 'Sofia Pro Light';
+	src: local(SofiaProLight), url(./fonts/SofiaProLight.otf);
+}
+
+@font-face {
+	font-family: 'Sofia Pro Medium';
+	src: local(SofiaProMedium), url(./fonts/SofiaProMedium.otf);
+}
+
+@mixin ff1 {
+	font-family: 'Sofia Pro Regular';
+	font-weight: 400;
+}
+
+@mixin ff2 {
+	font-family: 'Sofia Pro Light';
+	font-weight: 300;
+}
+
+@mixin ff3 {
+	font-family: 'Sofia Pro Medium';
+	font-weight: 500;
+}
+
+@mixin ft {
+	font-family: 'Petit Formal Script', cursive;
+	font-weight: 300;
+}

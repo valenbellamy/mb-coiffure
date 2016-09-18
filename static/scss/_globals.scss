@@ -1,0 +1,783 @@
+* {
+	@include box-sizing(border-box); 
+}
+
+html { 
+	height: 100%;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+body {
+	z-index: 1;
+	height: 100%;
+	/*overflow-x: hidden;*/
+	overflow: hidden;
+	position: relative;
+	background-color: $bg;
+}
+
+main {
+	position: absolute;
+	width: 100%;
+	/*height: 100%;*/
+}
+
+a {
+	text-decoration: none;
+	@include ff2;
+}
+
+h1,h2 {
+	@include ft;
+	/*letter-spacing: 0px;*/
+}
+
+h2 {
+	line-height: 1;
+	font-size: 40px;
+	@media (max-width: $xs-max) {
+		font-size: 30px;
+	}
+}
+
+h3 {
+	@include ff1;
+	font-size: 20px;
+	@media (max-width: $xs-max) {
+		font-size: 16px;
+	}
+}
+
+p {
+	@include ff2;
+	color: $color2;
+	font-size: 16px;
+	line-height: 1.4;
+	display: block;
+	@media (max-width: $sm-max) {
+		font-size: 14px;
+	}
+}
+
+span {
+	@include ff1;
+}
+
+strong {
+	@include ff3;
+}
+
+.mbs {
+	margin-bottom: 30px;
+}
+
+.mbm {
+	margin-bottom: 40px;
+}
+
+.mbl {
+	margin-bottom: 60px;
+}
+
+.ff1 {
+	@include ff1;
+}
+
+.ff2 {
+	@include ff2;
+}
+
+.ff3 {
+	@include ff3;
+}
+
+button {
+    background: none;
+    border: 0;
+    color: inherit;
+    /* cursor: default; */
+    font: inherit;
+    line-height: normal;
+    overflow: visible;
+    padding: 0;
+    cursor: pointer;
+    -webkit-appearance: button; /* for input */
+    -webkit-user-select: none; /* for button */
+       -moz-user-select: none;
+        -ms-user-select: none;
+        &:focus {
+        	outline: 0;
+        }
+}
+
+.btn {
+	a, button {
+		position: relative;
+		overflow: hidden;
+		z-index: 1;
+		background-color: $color1;
+		padding: 18px 23px 16px 23px;
+		border-radius: 30px;
+		color: $white;
+		font-size: 14px;
+		letter-spacing: 1px;
+		@include ff3;
+		&:before {
+			content: '';
+			z-index: -1;
+			position: absolute;
+			top: 50%;
+			left: 100%;
+			height: 50px;
+			width: 50px;
+			background-color: darken($color1, 7%);
+			margin-top: -25px;
+			border-radius: 50%;
+			transform-origin: 100% 50%;
+			@include transform(scale(1,2));
+			@include transition(all 0.7s);
+		}
+		&:hover {
+			&:before {
+				@include transform(scale(6,6));
+			}
+		}
+		@media (max-width: $sm-max) {
+			padding: 13px 18px 11px 18px;
+			font-size: 12px;
+		}
+		@media (max-width: $xs-max) {
+			margin: 0 auto;
+			display: block;
+		}
+	}
+}
+
+.bg-img, .filter {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
+.media {
+	display: table;
+	.media-left, .media-right {
+		display: table-cell;
+		vertical-align: middle;
+		&.top {
+			vertical-align: top;
+		}
+	}
+	.media-left {
+		padding-right: 5px;
+		img {
+			width: 20px;
+			@media (max-width: $xs-max) {
+				width: 15px;
+			}
+		}
+	}
+	.media-right {
+		padding-left: 5px;
+	}
+}
+
+.bg-img {
+	background-size: cover;
+	background-position: center center;
+}
+
+.filter {
+	z-index: 1;
+	&.filter-color1 {
+		background-color: rgba(95,54,89,0.9);
+	}
+}
+
+.overlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 10;
+	width: 100%;
+	height: 100%;
+	background-color: $color1;
+	transform-style: preserve-3d;
+	opacity: 1;
+	@include transition(all 0.4s cubic-bezier(.215,.61,.355,1) 0.1s);
+	&.overlay__intro {
+		background-color: $white;
+		&.is-hide {
+			opacity: 0;
+			z-index: 0;
+			/*@include transform(translate3d(100%,0,0));*/
+		}
+	}
+}
+
+.intro {
+	position: relative;
+	width: 100%;
+	height: 100vh;
+	background-color: $white;
+	.intro-content {
+		position: relative;
+		width: 100%;
+		height: 100%;
+		.bg-img {
+			background-size: cover;
+			background-position: center center;
+			z-index: 0;
+		}
+		.title {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			z-index: 2;
+			@include transform(translate(-50%,-50%));
+		}
+		h1, h2 {
+			position: relative;
+			/*opacity: 0;*/
+			@include transition(all 0.4s);
+			color: $white;
+			text-align: center;
+			font-size: 50px;
+			white-space: nowrap;
+			&.is-visible {
+				opacity: 1;
+				@include transform(translate(0px,0px))
+			}
+			@media (max-width: $xs-max) {
+				white-space: normal;
+				line-height: 1.2;
+			}
+		}
+		h1 {
+			margin-bottom: 30px;
+			@media (max-width: $sm-max) {
+				font-size: 45px;
+			}
+			@media (max-width: $xs-max) {
+				font-size: 32px;
+				margin-bottom: 0;
+			}
+		}
+		h2 {
+			color: $color1;
+			font-size: 40px;
+			@media (max-width: $sm-max) {
+				font-size: 35px;
+			}
+			@media (max-width: $xs-max) {
+				font-size: 22px;
+				margin-top: 5px;
+			}
+		}
+	}
+	.scroll {
+		position: absolute;
+		left: 50%;
+		bottom: 0px;
+		@include transform(translate(-50%,0px));
+		z-index: 5;
+		height: 67px;
+		overflow: hidden;
+		cursor: pointer;
+		&.is-visible {
+			span {
+				opacity: 1;
+			}
+		}
+		@media (max-width: $xs-max) {
+			opacity: 1;
+		}
+		span {
+			@include ff2;
+			font-size: 16px;
+			text-align: center;
+			color: $color1;
+			opacity: 0;
+			@include transition(opacity 0.2s);
+		}
+		.line {
+			height: 0;
+			width: 1px;
+			margin: 10px auto 0 auto;
+			background-color: $color1;
+			animation: line 3s linear 2s infinite;
+		}
+	}
+}
+
+@keyframes line {
+	0% {
+		height: 0px;
+	}
+	15% {	
+		height: 40px;
+	}
+	60% {
+		@include transform(translate(0px,40px));	
+	}
+	62% {
+		height: 0;
+	}
+	100% {
+		@include transform(translate(0px,0px));
+	}
+}
+
+@-webkit-keyframes line {
+	0% {
+		height: 0px;
+	}
+	15% {	
+		height: 40px;
+	}
+	60% {
+		@include transform(translate(0px,40px));	
+	}
+	62% {
+		height: 0;
+	}
+	100% {
+		@include transform(translate(0px,0px));
+	}
+}
+
+@-moz-keyframes line {
+	0% {
+		height: 0px;
+	}
+	15% {	
+		height: 40px;
+	}
+	60% {
+		@include transform(translate(0px,40px));	
+	}
+	62% {
+		height: 0;
+	}
+	100% {
+		@include transform(translate(0px,0px));
+	}
+}
+
+.salon {
+	padding: 120px 0 60px 0;
+	position: relative;
+	@media (max-width: $sm-max) {
+		padding: 20px 0 50px 0;
+	}
+	.pictures-blk {
+		height: 550px;
+		position: relative;
+		@media (max-width: $sm-max) {
+			height: 500px;
+		}
+		@media (max-width: $xs-max) {
+			height: 450px;
+		}
+		figure {
+			position: absolute;
+			overflow: hidden;
+			&.first {
+				top: 11%;
+				left: 10%;
+				width: 200px;
+				height: 200px;
+				.overlay {
+					@include transition(all 0.6s cubic-bezier(.66,0,.48,.3) 0.3s);
+				}
+				img {
+					/*@include transition(all 0.1s ease-in 0.6s);*/
+					transition: opacity 0.1s 0.7s, transform 0.3s 0.7s;
+				}
+				@media (max-width: $sm-max) {
+					top: 0%;
+					left: 35%;
+				}
+			}
+			&.second {
+				top: 0%;
+				right: 15%;
+				width: 170px;
+				height: 170px;
+				.overlay {
+					@include transition(all 0.6s cubic-bezier(.66,0,.48,.3) 0.6s);
+				}
+				img {
+					transition: opacity 0.1s 1s, transform 0.3s 1s;
+				}
+				@media (max-width: $lg-min) {
+					right: 8%;
+				}
+				@media (max-width: $sm-max) {
+					display: none,
+				}
+			}
+			&.third {
+				bottom: 15%;
+				left: 10%;
+				width: 130px;
+				height: 130px;
+				.overlay {
+					@include transition(all 0.6s cubic-bezier(.66,0,.48,.3) 0.5s);
+				}
+				img {
+					transition: opacity 0.1s 0.9s, transform 0.3s 0.9s;
+				}
+				@media (max-width: $sm-max) {
+					display: none,
+				}
+			}
+			&.fourth {
+				bottom: 17%;
+				right: 14%;
+				width: 240px;
+				height: 240px;
+				.overlay {
+					@include transition(all 0.6s cubic-bezier(.66,0,.48,.3) 0.4s);
+				}
+				img {
+					transition: opacity 0.1s 0.8s, transform 0.3s 0.8s;
+				}
+				@media (max-width: $lg-min) {
+					right: 5%;
+				}
+				@media (max-width: $sm-max) {
+					bottom: 0%;
+					right: 35%;
+				}
+			}
+			.overlay {
+				@include transform(scale(0));
+				opacity: 1;
+				z-index: 1;
+				border-radius: 50%;
+			}
+			img {
+				position: relative;
+				width: 100%;
+				height: 100%;
+				z-index: 2;
+				@include transform(scale(0.8));
+				opacity: 0;
+			}
+		}
+		&.is-visible {
+			figure {
+				.overlay {
+					@include transform(scale(0.8));
+					opacity: 1;
+				}
+				img {
+					opacity: 1;
+					@include transform(scale(1));
+				}
+			}
+		}
+	}
+	.content-blk {
+		margin-top: 100px;
+		padding-right: 60px;
+		@media (max-width: $sm-max) {
+			padding: 0 20px; 
+		}
+		p {
+			margin-bottom: 30px;
+		}
+		.btn {
+			margin-top: 50px;
+		}
+		h2 {
+			position: relative;
+			color: $color1;
+			margin-bottom: 30px;
+			padding-bottom: 30px;
+			opacity: 0;
+			@include transform(translate(40px,0px));
+			@include transition(all 0.5s ease-in);
+			&:after {
+				content: '';
+				position: absolute;
+				left: 0px;
+				bottom: 0;
+				height: 1px;
+				width: 0;
+				background-color: $color1;
+				@include transition(width 0.3s ease-in 0.3s);
+			}
+			&.is-visible {
+				@include transform(translate(0px,0px));
+				opacity: 1;
+				&:after {
+					width: 60px;
+				}
+			}
+		}
+	}
+}
+
+.prices {
+	position: relative;
+	height: auto;
+	width: 100%;
+	/*margin: 60px 0 0 0; */
+	padding: 100px 0;
+	overflow: hidden;
+	@media (max-width: $xs-max) {
+		padding: 40px 0 50px 0;
+	}
+	.bg-img {
+		bottom: -25%;
+		height: 120%;
+		width: 120%;
+	}
+	.content-blk {
+		position: relative;
+		z-index: 2;
+		h2 {
+			color: $color1;
+			margin-bottom: 80px;
+			@media (max-width: $xs-max) {
+				margin-bottom: 30px;
+			}
+		}
+		.left-blk {
+			padding-right: 30px;
+			@media (max-width: $xs-max) {
+				padding-right: 10px;
+			}
+		}
+		.right-blk {
+			padding-left: 30px;
+			@media (max-width: $xs-max) {
+				padding-left: 10px;
+			}
+		}
+		table {
+			width: 100%;
+			@include ff1;
+			color: $white;
+			@media (max-width: $xs-max) {
+				margin-bottom: 40px;
+			}
+			thead {
+				tr {
+					border-bottom: 1px solid $color1;
+					th {
+						text-align: center;
+						padding-bottom: 0.9em;
+						h3 {
+							color: $color1;
+							text-align: left;
+						}
+						span {
+							font-size: 14px;
+							letter-spacing: 1px;
+							@media (max-width: $sm-max) {
+								font-size: 12px;
+							}
+						}
+					}
+				}
+			}
+			tr {
+				td {
+					padding: 0.8em 0;
+					text-align: center;
+					@media (max-width: $sm-max) {
+						font-size: 14px;
+					}
+					&:first-child {
+						text-align: left;
+					}
+				}
+				&:first-child {
+					td {
+						padding-top: 1.6em;
+					}
+				}
+			}
+		}
+	}
+}
+
+.partner {
+	position: relative;
+	width: 100%;
+	padding: 80px 0 100px 0;
+	background-color: $color1;
+	@media (max-width: $xs-max) {
+		padding: 40px 0px;
+	}
+	.content-blk {
+		padding-right: 30px;
+		p {
+			margin-bottom: 30px;
+		}
+		h2 {
+			position: relative;
+			color: $white;
+			margin-bottom: 70px;
+			@include transition(all 0.5s ease-in);
+			@media (max-width: $xs-max) {
+				margin-bottom: 30px;
+			}
+		}
+	}
+	figure {
+		position: relative;
+		width: 100%;
+		height: 177px;
+		margin-top: 115px;
+		@media (max-width: $sm-max) {
+			margin-top: 0px;
+			height: auto;
+			width: 80%;
+			margin: 0px auto 20px auto;
+		}
+		@media (max-width: $xs-max) {
+			width: 100%;
+		}
+		img {
+			position: relative;
+			z-index: 2;
+			width: 100%;
+			border-radius: 10px;
+			opacity: 0;
+			@include transform(translate3d(0px,-40px,0px));
+			@include transition(all 0.5s ease-out);
+			&.anim-delay {
+				@include transition(all 0.5s ease-out 0.2s);
+			}
+		}
+		&.is-visible {
+			img {
+				opacity: 1;
+				@include transform(translate3d(0px,0px,0px));
+			}
+		}
+	}
+}
+
+.contact {
+	position: relative;
+	padding: 80px 0 100px 0;
+	@media (max-width: $xs-max) {
+		padding: 40px 0 60px 0;
+	}
+	h2 {
+		color: $color1;
+		margin: 0 0 40px 0;
+		@media (max-width: $xs-max) {
+			margin-bottom: 20px;
+		}
+	}
+	table {
+		width: 330px;
+		tr {
+			td:first-child {
+				@include ff3;
+				width: 130px;
+			}
+			td:last-child {
+				@include ff1;
+				width: 200px;
+				/*text-align: right;*/
+			}
+			td {
+				color: $color2;
+				font-size: 16px;
+				padding: 10px 0;
+				@media (max-width: $sm-max) {
+					font-size: 14px;
+					padding: 5px 0;
+				}
+			}
+			&:first-child {
+				td {
+					padding-top: 20px;
+				}
+			}
+		}
+		@media (max-width: $xs-max) {
+			margin-bottom: 40px;
+		}
+	}
+	span {
+		display: block;
+		color: $color2;
+		line-height: 1.4;
+		&.address {
+			margin-bottom: 20px;
+		}
+		@media (max-width: $sm-max) {
+			font-size: 14px;
+		}
+	}
+	.btn {
+		opacity: 0;
+		@include transform(translate(0px,50px));
+		@include transition (all 0.3s);
+		&.is-visible {
+			opacity: 1;
+			@include transform(translate(0px,0px));
+		}
+	}
+}
+
+.st-anim {
+	@include clearfix;
+	height: 40px;
+	overflow-y: hidden;
+	div {
+		@include ft;
+		font-size: 40px;
+		display: inline-block;
+		float: left;
+		line-height: 1;
+		@include transform(translate(0px,120%));
+		@include transition(transform 0.5s ease-out);
+		@media (max-width: $xs-max) {
+			font-size: 30px;
+		}
+	}
+	&.is-visible {
+		@for $i from 1 through 11{
+			div:nth-child(#{$i}){
+				-webkit-transition-delay: $i * 0.04s; 
+                -moz-transition-delay: $i * 0.04s;
+                -o-transition-delay: $i * 0.04s;
+                transition-delay: $i * 0.04s;
+				@include transform(translate(0,0));
+			}
+		}
+	}
+}
+
+#map {
+	width: 100%;
+	height: 500px;
+	@media (max-width: $sm-max) {
+		height: 400px;
+	}
+	@media (max-width: $xs-max) {
+		height: 300px;
+	}
+}
+
+.scrollbar {
+	position: fixed;
+	right: 0;
+	top: 0;
+	width: 4px;
+	/*height: 60px;*/
+	background-color: $color2;
+	transform-style: preserve-3d;
+}
