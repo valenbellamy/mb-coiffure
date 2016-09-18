@@ -1,0 +1,145 @@
+header {
+	position: absolute;
+	top: 0;
+	width: 100vw;
+	height: 120px;
+	z-index: 10;
+	background-color: transparent;
+	&.is-visible {
+		@include transform(translate(0,0));
+		nav {
+			.nav-anchors {
+				@include transform(translate3d(-50%,-50%,0));
+			}
+			figure, .phone {
+				@include transform(translate3d(0px,-50%,0px));
+			}
+		}
+	}
+	@media (max-width: $xs-max) {
+		nav {
+			figure, .phone , .nav-anchors {
+				@include transform(translate3d(0%,0%,0%));
+			}
+			.nav-anchors {
+				@include transform(translate3d(50%,0%,0%));
+			}
+		}
+	}
+	@media (max-width: $xs-max) {
+		height: 100px;
+	}
+	nav {
+		position: relative;
+		display: block;
+		width: 95%;
+		height: 100%;
+		margin: 0 auto;
+		.nav-anchors, .phone, figure {
+			position: absolute;
+			top: 50%;
+		}
+		.nav-anchors {
+			left: 50%;
+			@include transform(translate3d(-50%,-120px,0px));
+			@include transition(transform 0.4s 0.1s);
+			li {
+				vertical-align: middle;
+				display: inline-block;
+				padding: 0 25px;
+				@media (max-width: $md-min) {
+					padding: 0 15px;
+				}
+				@media (max-width: $xs-max) {
+					padding: 0 10px;
+				}
+				a {
+					position: relative;
+					color: $white;
+					font-size: 16px;
+					padding: 5px 0;
+					&:after {
+						content: '';
+						position: absolute;
+						bottom: 0;
+						left: 0;
+						background: $white;
+						width: 0;
+						height: 1px;
+						@include transition(width 0.3s ease-in);
+					}
+					@media (max-width: $xs-max) {
+						font-size: 14px;
+					}
+				}
+				&:hover {
+					a {
+						&:after {
+							width: 100%;
+						}
+					}
+				}
+			}
+			@media (max-width: $xs-max) {
+				width: 284px;
+				display: block;
+				margin: 0 auto;
+				top: 80%;
+				left: 50%;
+				margin-left: -142px;
+				@include transform(translate3d(0px,0px,0px));
+				@include transition(transform 0.4s 0s);
+			}
+		}
+		.phone {
+			right: 0;
+			@include transform(translate3d(0px,-120px,0px));
+			@include transition(transform 0.4s 0.2s);
+			@media (max-width: $xs-max) {
+				top: 25px;
+			}
+			img {
+				width: 25px;
+				margin-top: 2px;
+				@media (max-width: $xs-max) {
+					width: 20px;
+				}
+			}
+			span {
+				color: $white;
+				padding-bottom: 2px;
+				@media (max-width: $xs-max) {
+					font-size: 14px;
+				}
+			}
+			@media (max-width: $xs-max) {
+				@include transform(translate3d(0px,0px,0px));
+				@include transition(transform 0.4s 0s);
+			}
+		}
+		figure {
+			position: absolute;
+			left: 0;
+			/*height: 120px;*/
+			transform-style: preserve-3d;
+			@include transform(translate3d(0px,-120px,0px));
+			@include transition(transform 0.4s);
+			width: 220px;
+			@media (max-width: $md-min) {
+				width: 180px;
+			}
+			@media (max-width: $xs-max) {
+				top: 20px;
+				width: 150px;
+			}
+			img {
+				width: 100%;
+				/*margin: 31px 0 0 0;*/
+			}
+			@media (max-width: $xs-max) {
+				@include transform(translate3d(0px,0px,0px));
+				@include transition(transform 0.4s 0s);
+			}
+		}
+	}
+}
