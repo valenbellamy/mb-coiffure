@@ -41,7 +41,7 @@ function drop() {
 
 function addMarkerWithTimeout(position, timeout) {
     window.setTimeout(function() {
-        var image = '../static/img/picto_marker.png';
+        var image = 'static/img/picto_marker.png';
         markers.push(new google.maps.Marker({
             position: position,
             map: map,
