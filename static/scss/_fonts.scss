@@ -1,8 +1,3 @@
-/*@font-face {
-   font-family: 'Petit Formal Script', cursive;
-   src: local(Formal), url(./fonts/PetitFormalScript-Regular.ttf);
-}*/
-
 @font-face {
 	font-family: 'Sofia Pro Regular';
 	src: local(SofiaProRegular), url(./fonts/SofiaProRegular.otf);
@@ -16,6 +11,11 @@
 @font-face {
 	font-family: 'Sofia Pro Medium';
 	src: local(SofiaProMedium), url(./fonts/SofiaProMedium.otf);
+}
+
+@font-face {
+	font-family: 'Petit Formal Script';
+	src: local(PetitFormalScript-Regular), url(./fonts/PetitFormalScript-Regular.ttf);
 }
 
 @mixin ff1 {
