@@ -27,8 +27,6 @@ var run = function() {
             var scrollTo = $(this).attr('data-scroll');
             target = $("[data-scroll-target='" + scrollTo + "']");
             targetY = ((target.offset().top)*-1) + currentY;
-            console.log('target' + targetY);
-            console.log('Y' + currentY);
         });
     });
 
