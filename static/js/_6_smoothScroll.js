@@ -68,16 +68,6 @@ var run = function() {
             rect.top <= wh-100
         );
     }
-
-    if ($('.partner-blk').hasClass('is-visible')) {
-        $('.parallax-top').css({
-            '-webkit-transform' : "translate3d(0px," + st/10 + "px, 0px)",
-            '-moz-transform'    : "translate3d(0px," + st/10 + "px, 0px)",
-            '-ms-transform'     : "translate3d(0px," + st/10 + "px, 0px)",
-            '-o-transform'      : "translate3d(0px," + st/10 + "px, 0px)",
-            'transform'         : "translate3d(0px," + st/10 + "px, 0px)"
-        });
-    };
     $('.parallax-bottom').css({
         '-webkit-transform' : "translate3d(0px," + st/8 + "px, 0px)",
         '-moz-transform'    : "translate3d(0px," + st/8 + "px, 0px)",
@@ -85,13 +75,15 @@ var run = function() {
         '-o-transform'      : "translate3d(0px," + st/8 + "px, 0px)",
         'transform'         : "translate3d(0px," + st/8 + "px, 0px)"
     });
-    $('.parallax-bg').css({
-        '-webkit-transform' : "translate(0px," + st/14 + "px)",
-        '-moz-transform'    : "translate(0px," + st/14 + "px)",
-        '-ms-transform'     : "translate(0px," + st/14 + "px)",
-        '-o-transform'      : "translate(0px," + st/14 + "px)",
-        'transform'         : "translate(0px," + st/14 + "px)"
-    });
+    if ($(window).width() > 768) {
+        $('.parallax-bg').css({
+            '-webkit-transform' : "translate(0px," + st/14 + "px)",
+            '-moz-transform'    : "translate(0px," + st/14 + "px)",
+            '-ms-transform'     : "translate(0px," + st/14 + "px)",
+            '-o-transform'      : "translate(0px," + st/14 + "px)",
+            'transform'         : "translate(0px," + st/14 + "px)"
+        });
+    }
     var scrollbarHeight = 0.1*window.innerHeight;
     $('.scrollbar').css({'height': scrollbarHeight + "px"});
     var scrollbar = ((currentY/(sectionHeight - window.innerHeight))*-1)*(window.innerHeight)/(1 + (scrollbarHeight/window.innerHeight));
