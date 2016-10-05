@@ -2,7 +2,7 @@ $(document).ready(function() {
     $('.overlay__intro').addClass('is-hide');
     if ($(window).width() > 767) {
         delay($('header'),1600);
-        delay($('.scroll'), 2100);
+        delay($('.scroll'), 2200);
     }
 });
 
